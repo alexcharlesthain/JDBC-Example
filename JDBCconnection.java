@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 /////OPENING THE CONNECTION/////
 public class JDBCconnection {
+	
 	static final String JDBC_Driver = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://192.168.1.126:3306/sakila-db";
 
@@ -29,8 +30,8 @@ public class JDBCconnection {
 			e.printStackTrace();
 		}				
 
-		finally {
-			Create.CreateRecord();
+		//finally {
+			//Create.CreateRecord();
 
 		try {
 			if (Main.statement != null)
@@ -45,7 +46,7 @@ public class JDBCconnection {
 		} 	catch (SQLException se) {
 			se.printStackTrace();
 		}
-	}
+	
 		System.out.println("Connection Closed, Goodbye!");	
 	}	
 }
