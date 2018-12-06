@@ -1,22 +1,23 @@
 package jdbcExample;
 
-//import java.sql.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-//import java.sql.Statement;
+import java.sql.Statement;
 
 /////OPENING THE CONNECTION/////
 public class JDBCconnection {
-	
-	static final String JDBC_Driver = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://192.168.1.126:3306/sakila-db";
 
+	static Connection connection = null;
+	static Statement statement = null;
+
+	static final String JDBC_Driver = "com.mysql.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://localhost/sakila-db";
 	static final String Username = "root";
 	static final String Password = "5622";
 
-	public static void accessDB() {
-		//Connection connection = null;
-		//Statement statement = null;
+	public void accessDB() {
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -24,29 +25,52 @@ public class JDBCconnection {
 		}
 		System.out.println("Connecting to database...");
 		try {
-			Main.connection =
+			connection =
 					DriverManager.getConnection(DB_URL, Username, Password);
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		}				
+	}	
+	public void AddRecord() {
 
-		//finally {
-			//Create.CreateRecord();
+		///////CREATE/////////
+
+		System.out.println("Inserting a record into the table...");
+		try {
+			statement = connection.createStatement();
+		} catch (SQLException e) {
+			System.out.println("Couldn't create statement");
+			e.printStackTrace();
+
+		}
+		String SQL = "INSERT INTO actor" + "VALUES(Barry, Stein)";
 
 		try {
-			if (Main.statement != null)
-				Main.connection.close();
+			statement.executeUpdate(SQL);
+
+		} catch (SQLException e) {
+			System.out.println("Failed to create record");
+			e.printStackTrace();				
+		}
+		System.out.println("Inserted record into the table...");
+
+		////connection close after inserting record////
+		try {
+			if (statement != null)
+				connection.close();
 
 		} 	catch (SQLException se) { }
 
 		try {
-			if (Main.connection != null)
-				Main.connection.close();
+			if (connection != null)
+				connection.close();
 
 		} 	catch (SQLException se) {
 			se.printStackTrace();
 		}
-	
-		System.out.println("Connection Closed, Goodbye!");	
-	}	
+
+		System.out.println("Connection Closed, Goodbye!");
+	}
+
 }
+
