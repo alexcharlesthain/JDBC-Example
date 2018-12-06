@@ -12,7 +12,7 @@ public class JDBCconnection {
 	static Statement statement = null;
 
 	static final String JDBC_Driver = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/sakila-db";
+	static final String DB_URL = "jdbc:mysql://localhost/sakila";
 	static final String Username = "root";
 	static final String Password = "5622";
 
@@ -43,7 +43,7 @@ public class JDBCconnection {
 			e.printStackTrace();
 
 		}
-		String SQL = "INSERT INTO actor" + "VALUES(Barry, Stein)";
+		String SQL = "INSERT INTO actor (first_name, last_name) VALUES ('BARRY', 'STEIN')";
 
 		try {
 			statement.executeUpdate(SQL);
@@ -52,7 +52,7 @@ public class JDBCconnection {
 			System.out.println("Failed to create record");
 			e.printStackTrace();				
 		}
-		System.out.println("Inserted record into the table...");
+		System.out.println("Inserted record into the table.");
 
 		////connection close after inserting record////
 		try {
