@@ -11,6 +11,7 @@ public class Create {
 			try {
 				Main.statement = Main.connection.createStatement();
 			} catch (SQLException e) {
+				System.out.println("Couldn't create statement");
 				e.printStackTrace();
 			
 			}
