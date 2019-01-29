@@ -14,7 +14,7 @@ public class JDBCconnection {
 	static final String JDBC_Driver = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/sakila";
 	static final String Username = "root";
-	static final String Password = "5622";
+	static final String Password = "";
 
 	public void accessDB() {
 
